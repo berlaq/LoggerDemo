@@ -1,5 +1,5 @@
-import morgan, {FormatFn, token} from "morgan";
-import express, {Request, Response} from "express";
+import morgan from "morgan";
+import express from "express";
 import {logger} from "./logger";
 
 morgan.token('id', (req, res: express.Response) => {
@@ -36,7 +36,7 @@ export const errorMorgan = morgan((tokens, req:express.Request, res:express.Resp
         res.locals.errorStack
     ].join(' ');
 }, {
-    stream: errorStream, skip(req: Request, res: express.Response): boolean {
+    stream: errorStream, skip(req: express.Request, res: express.Response): boolean {
         return res.statusCode < 400
     }
 });
